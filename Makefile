@@ -1,10 +1,14 @@
 all: dirs bin/gntp-send bin/gntp-send++
 
+ARCH=-arch i386
+#ARCH=-arch i386 -arch x86_64
+
+
 bin/gntp-send : objs/gntp-send.o lib/libgrowl.a
-	gcc $^ -o $@
+	gcc $(ARCH) $^ -o $@
 
 bin/gntp-send++ : objs/gntp-send++.o lib/libgrowl++.a lib/libgrowl.a
-	g++ $^ -o $@
+	g++ $(ARCH)  $^ -o $@
 
 lib/libgrowl.a : objs/growl.o objs/tcp.o  objs/md5.o
 	ar rc $@ $^
@@ -15,22 +19,22 @@ lib/libgrowl++.a : objs/growl++.o objs/tcp.o objs/md5.o
 	ranlib $@
 
 objs/growl.o : source/growl.c
-	gcc -D GROWL_STATIC -I headers -Wall -Wno-format-zero-length -c $< -o $@
+	gcc $(ARCH) -D GROWL_STATIC -I headers -Wall -Wno-format-zero-length -c $< -o $@
 
 objs/tcp.o : source/tcp.c
-	gcc -I headers -Wall -c $< -o $@
+	gcc $(ARCH)  -I headers -Wall -c $< -o $@
 
 objs/md5.o : source/md5.c
-	gcc -I headers -Wall -c $< -o $@
+	gcc $(ARCH)  -I headers -Wall -c $< -o $@
 
 objs/gntp-send.o : source/gntp-send.c
-	gcc -I headers -Wall -c $< -o $@
+	gcc $(ARCH)  -I headers -Wall -c $< -o $@
 
 objs/growl++.o : source/growl++.cpp
-	g++ -I headers -Wall -c $< -o $@
+	g++ $(ARCH)  -I headers -Wall -c $< -o $@
 
 objs/gntp-send++.o : source/gntp-send++.cpp
-	g++ -I headers -Wall -c $< -o $@
+	g++ $(ARCH)  -I headers -Wall -c $< -o $@
 
 clean : 
 	rm -f bin/* objs/* lib/*
