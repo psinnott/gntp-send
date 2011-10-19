@@ -104,7 +104,7 @@ char *growl_generate_authheader_alloc(const char*const password)
 				if (salthash) {
 					authheader = (char*)malloc(strlen(keyhash) + strlen(salthash) + 7);
 					if (authheader) {
-						sprintf(authheader, " MD5:%s.%s", keyhash, salthash);
+						sprintf(authheader, "MD5:%s.%s", keyhash, salthash);
 					}
 					free(salthash);
 				}
@@ -154,7 +154,14 @@ int growl_tcp_register( const char *const server , const char *const appname , c
 		}
 	}
 
-	growl_tcp_write(sock, "GNTP/1.0 REGISTER NONE %s", authheader ? authheader : "");
+	if(authheader)
+	{
+		growl_tcp_write(sock, "GNTP/1.0 REGISTER NONE %s", authheader );
+	}
+	else
+	{
+		growl_tcp_write(sock, "GNTP/1.0 REGISTER NONE" );
+	}
 	growl_tcp_write(sock, "Application-Name: %s", appname);
 	if(iconid) 
 	{
@@ -276,7 +283,14 @@ int growl_tcp_notify( const char *const server,const char *const appname,const c
 		}
 	}
 
-	growl_tcp_write(sock, "GNTP/1.0 NOTIFY NONE %s", authheader ? authheader : "");
+	if(authheader)
+	{
+		growl_tcp_write(sock, "GNTP/1.0 NOTIFY NONE %s", authheader );
+	}
+	else
+	{
+		growl_tcp_write(sock, "GNTP/1.0 NOTIFY NONE" );
+	}
 	growl_tcp_write(sock, "Application-Name: %s", appname);
 	growl_tcp_write(sock, "Notification-Name: %s", notify);
 	growl_tcp_write(sock, "Notification-Title: %s", title);
