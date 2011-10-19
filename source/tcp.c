@@ -48,6 +48,10 @@ void growl_tcp_write( int sock , const char *const format , ... )
 	send( sock , output , length , 0 );
 	send( sock , "\r\n" , 2 , 0 );
 
+	if( getenv("GNTP_DEBUG") != NULL )
+	{
+		printf( "<%s\n" , output );
+	}
 	free(output);
 }
 
@@ -75,6 +79,12 @@ char *growl_tcp_read(int sock) {
 		}
 		line[pos] = 0;
 	}
+	
+	if( getenv("GNTP_DEBUG") != NULL )
+	{
+		printf( ">%s\n" , line );
+	}
+
 	return line;
 }
 
