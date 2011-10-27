@@ -17,7 +17,7 @@
 
 #ifdef __cplusplus
 extern "C" {
-#endif 
+#endif
 
 
 GROWL_EXPORT int growl( const char *const server,const char *const appname,const char *const notify,const char *const title, const char *const message ,
@@ -40,7 +40,7 @@ GROWL_EXPORT void growl_shutdown(void);
 
 #ifdef __cplusplus
 }
-#endif 
+#endif
 
 
 #endif /* _GROWL_H_ */

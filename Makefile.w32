@@ -18,7 +18,7 @@ bin/gntp-send-shared++.exe : objs/gntp-send-shared++.o lib/libgrowl-shared++.a l
 
 lib/libgrowl-static.a : objs/growl-static.o objs/tcp.o  objs/md5.o
 	ar rc $@ $^
-	ranlib $@	
+	ranlib $@
 
 lib/libgrowl-static++.a : objs/growl-static++.o objs/tcp.o objs/md5.o
 	ar rc $@ $^
@@ -69,7 +69,7 @@ objs/md5.o : source/md5.c
 
 
 
-clean : 
+clean :
 	del /Q bin\* objs\* lib\*
 
 dirs : bin objs lib

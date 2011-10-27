@@ -120,7 +120,7 @@ int main(int argc, char* argv[]) {
 
 	if (!server) server = "127.0.0.1";
 
-	growl_init();	
+	growl_init();
 	if (tcpsend) {
 		rc = growl(server,appname,notify,title,message,icon,password,url);
 	} else {

@@ -22,7 +22,7 @@ void growl_tcp_write_raw( int sock, const unsigned char * data, const int data_l
 	send(sock, data, data_length, 0);
 }
 
-void growl_tcp_write( int sock , const char *const format , ... ) 
+void growl_tcp_write( int sock , const char *const format , ... )
 {
 	int length;
 	char *output;
@@ -79,7 +79,7 @@ char *growl_tcp_read(int sock) {
 		}
 		line[pos] = 0;
 	}
-	
+
 	if( getenv("GNTP_DEBUG") != NULL )
 	{
 		printf( ">%s\n" , line );
@@ -140,7 +140,7 @@ int growl_tcp_parse_hostname( const char *const server , int default_port , stru
 		port++;
 		default_port = atoi(port);
 	}
-	
+
 	host_ent = gethostbyname(hostname);
 	if( host_ent == NULL )
 	{
@@ -148,12 +148,12 @@ int growl_tcp_parse_hostname( const char *const server , int default_port , stru
 		free(hostname);
 		return -1;
 	}
-	
+
 	memset( sockaddr , 0 , sizeof(sockaddr) );
 	sockaddr->sin_family = AF_INET;
 	memcpy( &sockaddr->sin_addr , host_ent->h_addr , host_ent->h_length );
 	sockaddr->sin_port = htons(default_port);
-	 
+
 	free(hostname);
 	return 0;
 }
@@ -167,13 +167,13 @@ int growl_tcp_datagram( const char *server , const unsigned char *data , const i
 	{
 		return -1;
 	}
-	
+
 	sock = socket(PF_INET, SOCK_DGRAM, IPPROTO_UDP);
 	if( sock < 0 )
 	{
 		return -1;
 	}
-	
+
 	if( sendto(sock, (char*)data , data_length , 0 , (struct sockaddr*)&serv_addr , sizeof(serv_addr) ) > 0 )
 	{
 		return 0;
