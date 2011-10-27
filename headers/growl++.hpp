@@ -15,7 +15,7 @@
 
 enum Growl_Protocol { GROWL_UDP , GROWL_TCP };
 
-class GROWL_CPP_EXPORT Growl 
+class GROWL_CPP_EXPORT Growl
 {
 	private:
 		char *server;

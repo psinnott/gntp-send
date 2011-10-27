@@ -61,7 +61,7 @@ objs/md5.obj : source/md5.c
 
 
 
-clean : 
+clean :
 	del /Q bin objs lib
 
 dirs : bin objs lib

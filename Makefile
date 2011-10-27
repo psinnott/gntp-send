@@ -12,7 +12,7 @@ bin/gntp-send++ : objs/gntp-send++.o lib/libgrowl++.a lib/libgrowl.a
 
 lib/libgrowl.a : objs/growl.o objs/tcp.o  objs/md5.o
 	ar rc $@ $^
-	ranlib $@	
+	ranlib $@
 
 lib/libgrowl++.a : objs/growl++.o objs/tcp.o objs/md5.o
 	ar rc $@ $^
@@ -36,7 +36,7 @@ objs/growl++.o : source/growl++.cpp
 objs/gntp-send++.o : source/gntp-send++.cpp
 	g++ $(ARCH)  -I headers -Wall -c $< -o $@
 
-clean : 
+clean :
 	rm -f bin/* objs/* lib/*
 
 dirs : bin objs lib
