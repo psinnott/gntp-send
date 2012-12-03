@@ -16,25 +16,34 @@ When the notification is sent over TCP using GNTP http callbacks and both local 
 
 =head1 OPTIONS
 
--a , application name , if not specified defaults to gntp-send
+ -a APPLICATION
+	application name , defaults to gntp-send
 
--n , notification name , if not specified defaults to gntp-send notify
+ -n NOTIFICATION
+	notification name , defaults to gntp-send notify
 
--s , host and port to send notification to , if not specified the host defaults to localhost and the port defaults to the protocol default (tcp: 23053 , udp: 9887) , you can specify the host only and the port defaults to the protocol default
+ -s HOST:PORT , -s HOST
+	host and port to send notification to , host defaults to localhost and the port defaults to the protocol default (tcp: 23053 , udp: 9887) , you can specify the host only and the port defaults to the protocol default
 
--p , password , if not specified defaults to not attempting authentication
+ -p PASSWORD
+	password , defaults to not attempting authentication
 
--u , send the notification over UDP , if not specified the notification is sent over TCP using GNTP
+ -u
+	send the notification over UDP , by default the notification is sent over TCP using GNTP
 
-=head1 
+=head1 POSITIONAL ARGUMENTS
 
-title , mandatory , title of the notification
+ title 
+	mandatory , title of the notification
 
-message , mandatory , notification message
+ message 	
+	mandatory , notification message
 
-icon , optional but required in order to supply url , local file name or url of icon for the notification , only supported over tcp
+ icon 	
+	optional , local file name or url of icon for the notification 
 
-url , optional , url to call if the notification is clicked , only supported by GNTP over TCP
+ url 	
+	optional , url to call if the notification is clicked 
 
 =head1 DIAGNOSTICS
 

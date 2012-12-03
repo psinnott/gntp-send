@@ -148,24 +148,37 @@ Sends notification to local or remote Growl application over \s-1UDP\s0 or \s-1T
 When the notification is sent over \s-1TCP\s0 using \s-1GNTP\s0 http callbacks and both local and remote icons are supported.
 .SH "OPTIONS"
 .IX Header "OPTIONS"
-\&\-a , application name , if not specified defaults to gntp-send
-.PP
-\&\-n , notification name , if not specified defaults to gntp-send notify
-.PP
-\&\-s , host and port to send notification to , if not specified the host defaults to localhost and the port defaults to the protocol default (tcp: 23053 , udp: 9887) , you can specify the host only and the port defaults to the protocol default
-.PP
-\&\-p , password , if not specified defaults to not attempting authentication
-.PP
-\&\-u , send the notification over \s-1UDP\s0 , if not specified the notification is sent over \s-1TCP\s0 using \s-1GNTP\s0
-.SH ""
-.IX Header ""
-title , mandatory , title of the notification
-.PP
-message , mandatory , notification message
-.PP
-icon , optional but required in order to supply url , local file name or url of icon for the notification , only supported over tcp
-.PP
-url , optional , url to call if the notification is clicked , only supported by \s-1GNTP\s0 over \s-1TCP\s0
+.Vb 2
+\& \-a APPLICATION
+\&        application name , defaults to gntp\-send
+\&
+\& \-n NOTIFICATION
+\&        notification name , defaults to gntp\-send notify
+\&
+\& \-s HOST:PORT , \-s HOST
+\&        host and port to send notification to , host defaults to localhost and the port defaults to the protocol default (tcp: 23053 , udp: 9887) , you can specify the host only and the port defaults to the protocol default
+\&
+\& \-p PASSWORD
+\&        password , defaults to not attempting authentication
+\&
+\& \-u
+\&        send the notification over UDP , by default the notification is sent over TCP using GNTP
+.Ve
+.SH "POSITIONAL ARGUMENTS"
+.IX Header "POSITIONAL ARGUMENTS"
+.Vb 2
+\& title 
+\&        mandatory , title of the notification
+\&
+\& message        
+\&        mandatory , notification message
+\&
+\& icon   
+\&        optional , local file name or url of icon for the notification 
+\&
+\& url    
+\&        optional , url to call if the notification is clicked
+.Ve
 .SH "DIAGNOSTICS"
 .IX Header "DIAGNOSTICS"
 0 if the notification was delivered to Growl , this does not mean it was accepted
