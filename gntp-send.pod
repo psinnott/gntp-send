@@ -1,0 +1,47 @@
+# pod2man -r " " -s 1 -c gntp-send -n GNTP-SEND gntp-send.pod
+
+=head1 NAME
+
+gntp-send - Utility for sending notifications to Growl using UDP or GNTP protocols
+
+=head1 SYNOPSIS
+
+gntp-send [-u] [-a APPNAME] [-n NOTIFY] [-s SERVER:PORT] [-p PASSWORD] title message [icon] [url]
+
+=head1 DESCRIPTION 
+
+Sends notification to local or remote Growl application over UDP or TCP network protocols.
+When the notification is sent over TCP using GNTP http callbacks and both local and remote icons are supported.
+ 
+
+=head1 OPTIONS
+
+-a , application name , if not specified defaults to gntp-send
+
+-n , notification name , if not specified defaults to gntp-send notify
+
+-s , host and port to send notification to , if not specified the host defaults to localhost and the port defaults to the protocol default (tcp: 23053 , udp: 9887) , you can specify the host only and the port defaults to the protocol default
+
+-p , password , if not specified defaults to not attempting authentication
+
+-u , send the notification over UDP , if not specified the notification is sent over TCP using GNTP
+
+=head1 
+
+title , mandatory , title of the notification
+
+message , mandatory , notification message
+
+icon , optional but required in order to supply url , local file name or url of icon for the notification , only supported over tcp
+
+url , optional , url to call if the notification is clicked , only supported by GNTP over TCP
+
+=head1 DIAGNOSTICS
+
+0 if the notification was delivered to Growl , this does not mean it was accepted
+
+-1 otherwise
+
+=head1 BUGS
+
+None
