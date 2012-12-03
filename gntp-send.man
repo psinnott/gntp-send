@@ -181,6 +181,8 @@ When the notification is sent over \s-1TCP\s0 using \s-1GNTP\s0 http callbacks a
 .Ve
 .SH "DIAGNOSTICS"
 .IX Header "DIAGNOSTICS"
+Setting the environmental variable \s-1GNTP_DEBUG\s0 will cause the \s-1TCP\s0 traffic to be printed to \s-1STDOUT\s0
+.PP
 0 if the notification was delivered to Growl , this does not mean it was accepted
 .PP
 \&\-1 otherwise
