@@ -47,6 +47,8 @@ When the notification is sent over TCP using GNTP http callbacks and both local 
 
 =head1 DIAGNOSTICS
 
+Setting the environmental variable GNTP_DEBUG will cause the TCP traffic to be printed to STDOUT
+
 0 if the notification was delivered to Growl , this does not mean it was accepted
 
 -1 otherwise
