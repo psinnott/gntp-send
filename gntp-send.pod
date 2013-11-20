@@ -6,7 +6,7 @@ gntp-send - Utility for sending notifications to Growl using UDP or GNTP protoco
 
 =head1 SYNOPSIS
 
-gntp-send [-u] [-a APPNAME] [-n NOTIFY] [-s SERVER:PORT] [-p PASSWORD] title message [icon] [url]
+gntp-send [-u] [-a APPNAME] [-n NOTIFY] [-s SERVER:PORT] [-i ICON] [-z NOTIFICATION_ICON] [-p PASSWORD] title message [url]
 
 =head1 DESCRIPTION 
 
@@ -30,6 +30,10 @@ When the notification is sent over TCP using GNTP http callbacks and both local 
 
  -u
 	send the notification over UDP , by default the notification is sent over TCP using GNTP
+	
+ -i     URL or local filename for application icon
+ 
+ -z     URL or local filename for notification icon
 
 =head1 POSITIONAL ARGUMENTS
 
@@ -38,9 +42,6 @@ When the notification is sent over TCP using GNTP http callbacks and both local 
 
  message 	
 	mandatory , notification message
-
- icon 	
-	optional , local file name or url of icon for the notification 
 
  url 	
 	optional , url to call if the notification is clicked 
