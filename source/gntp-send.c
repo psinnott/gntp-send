@@ -91,38 +91,40 @@ int main(int argc, char* argv[]) {
 	char* title = NULL;
 	char* message = NULL;
 	char* icon = NULL;
+	char *notification_icon = NULL;
 	char* url = NULL;
 	int tcpsend = 1;
 
 	opterr = 0;
-	while ((c = getopts(argc, argv, "a:n:s:p:u") != -1)) {
+	while ((c = getopts(argc, argv, "a:n:s:p:i:z:u") != -1)) {
 		switch (optopt) {
 		case 'a': appname = optarg; break;
 		case 'n': notify = optarg; break;
 		case 's': server = optarg; break;
 		case 'p': password = optarg; break;
 		case 'u': tcpsend = 0; break;
+		case 'i' : icon = string_to_utf8_alloc(optarg); break;
+		case 'z' : notification_icon = string_to_utf8_alloc(optarg); break;
 		case '?': break;
 		default: argc = 0; break;
 		}
 		optarg = NULL;
 	}
 
-	if ((argc - optind) < 2 || (argc - optind) > 4) {
-		fprintf(stderr, "%s: [-u] [-a APPNAME] [-n NOTIFY] [-s SERVER:PORT] [-p PASSWORD] title message [icon] [url]\n", argv[0]);
+	if ((argc - optind) < 2 || (argc - optind) > 3) {
+		fprintf(stderr, "%s: [-u] [-a APPNAME] [-n NOTIFY] [-s SERVER:PORT] [-p PASSWORD] [-i ICON] [-z NOTIFICATION_ICON] title message [url]\n", argv[0]);
 		exit(1);
 	}
 
 	title = string_to_utf8_alloc(argv[optind]);
 	message = string_to_utf8_alloc(argv[optind + 1]);
-	if ((argc - optind) >= 3) icon = string_to_utf8_alloc(argv[optind + 2]);
-	if ((argc - optind) == 4) url = string_to_utf8_alloc(argv[optind + 3]);
+	if ((argc - optind) == 3 ) url = string_to_utf8_alloc(argv[optind + 2]);
 
 	if (!server) server = "127.0.0.1";
 
 	growl_init();	
 	if (tcpsend) {
-		rc = growl(server,appname,notify,title,message,icon,password,url);
+		rc = growl(server,appname,notify,title,message,icon,notification_icon,password,url);
 	} else {
 		rc = growl_udp(server,appname,notify,title,message,icon,password,url);
 	}
@@ -131,6 +133,7 @@ int main(int argc, char* argv[]) {
 	if (title) free(title);
 	if (message) free(message);
 	if (icon) free(icon);
+	if (notification_icon) free(notification_icon);
 	if (url) free(url);
 
 	return rc;
